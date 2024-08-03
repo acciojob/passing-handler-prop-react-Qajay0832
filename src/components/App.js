@@ -26,23 +26,26 @@ const title = 'Select the gradient and then the Box to change the color';
 const App = () => {
   let [nextBackground, selectNextBackground] = useState({ background: "" })
   const applyColor = (updateSelectionStyle) => {
-    updateSelectionStyle(nextBackground)
+    updateSelectionStyle(nextBackground);
   }
+
+  
+  
 
   return (
     <div id="master">
-      <h5 className="heading">{/* display title here */}</h5>
+      <h5 className="heading">Select the gradient and then the Box to change the color</h5>
 
       <div className="row">
         {colourConfig.map((config, index) => (
-          <ColourSelector key={config.key} config={config} selectNextBackground={selectNextBackground} />
+          <ColourSelector key={config.key} config={config} selectNextBackground={selectNextBackground} classname={config.classname} label={config.label}/>
         ))}
       </div>
 
       <div className='row' id="children-wrapper">
         {
-          ["selection1", "selection2", "selection3"].map(key => (
-            <Selection key={key} applyColor={applyColor} />
+          ["selection1", "selection2", "selection3"].map((key,index) => (
+            <Selection key={key} applyColor={applyColor} index={index} data={nextBackground}/>
           ))
         }
       </div>
